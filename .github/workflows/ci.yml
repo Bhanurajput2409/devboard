@@ -40,7 +40,8 @@ jobs:
     - name: build and push Docker image
       uses: docker/build-push-action@v7
       with:
-        context: ./frontend/Dockerfile
+        context: ./frontend
+        file: ./frontend/Dockerfile
         push: true
         tags: ${{ vars.DOCKERHUB_USERNAME }}/devboard-frontend:latest
     
@@ -74,7 +75,8 @@ jobs:
     - name: build and push Docker image
       uses: docker/build-push-action@v7
       with:
-        context: ./backend/Dockerfile
+        context: ./backend
+        file: ./backend/Dockerfile
         push: true
         tags: ${{ vars.DOCKERHUB_USERNAME }}/devboard-backend:latest
       
