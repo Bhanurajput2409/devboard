@@ -35,6 +35,14 @@ jobs:
       with:
         username: ${{ vars.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: build and push Docker image
+      uses: docker/build-push-action@v7
+      with:
+        context: .
+        file: ./frontend
+        push: true
+        tags: ${{ vars.DOCKERHUB_USERNAME }}/devboard-frontend:latest
     
 
       
