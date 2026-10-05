@@ -21,13 +21,14 @@ jobs:
 
     - run: npm install
       working-directory: ./frontend
-    - run: npm test
-      working-directory: ./frontend
-      
-    # Step 3: Install clean dependencies
+
+     # Step 3: Install clean dependencies
     - name: Install dependencies
       run: npm install --legacy-peer-deps
       working-directory: ./frontend 
+
+    - run: npm test
+      working-directory: ./frontend
     
     - name: lint the code
       run: npm run lint
@@ -78,7 +79,7 @@ jobs:
       uses: docker/build-push-action@v7
       with:
         context: .
-        file: ./backend
+        file: ./backend/Dockerfile
         push: true
         tags: ${{ vars.DOCKERHUB_USERNAME }}/devboard-backend:latest
       
