@@ -57,7 +57,10 @@ jobs:
         go-version-file: ./backend/go.mod
         cache-dependency-path: ./backend/go.sum
 
+    - name: run go vet 
       run: go vet
+      
+    - name: run go test
       run: go test ./...
 
     - name: Log in to Docker Hub
