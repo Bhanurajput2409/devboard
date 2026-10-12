@@ -1,10 +1,9 @@
 # Deploy github actions using ci workflow
 
-name: CD
+name: CD Github actions
 on:
-  workflow_dispatch:
-    
-
+  workflow_call:
+  
 jobs:
   deploy:
     runs-on: self-hosted
