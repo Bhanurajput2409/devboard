@@ -2,7 +2,7 @@
 
 name: CD
 on:
-  workflowdispatch:
+  workflow_dispatch:
     needs: ci.yml
 
 jobs:
