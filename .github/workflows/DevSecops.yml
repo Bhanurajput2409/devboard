@@ -1,12 +1,10 @@
 name: Devsecops
+
 on:
   push:
     branches: [master]
 
 jobs:
-  devsecops:
-  runs-on: ubuntu-latest
+  code-quality:
+    uses: ./.github/workflows/Code-quality.yml
 
-  steps:
-    - name: Code quality
-      uses: ./.github/workflows/Code-quality.yml
