@@ -9,4 +9,4 @@ jobs:
 
   steps:
     - name: Code quality
-      uses: ./.github/workflows/code-quality.yml
+      uses: ./.github/workflows/Code-quality.yml
