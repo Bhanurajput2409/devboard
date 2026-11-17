@@ -17,6 +17,9 @@ jobs:
         - name: Install dependencies
           run: npm ci
 
+        - name: Install npm Packages
+          run: npm install --legacy-peer-deps
+
         - name: Check formatting
           run: npm run format:check
 
