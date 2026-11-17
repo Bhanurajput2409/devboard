@@ -1,8 +1,7 @@
 name: Devsecops
 on:
   push:
-    branches:
-      - master
+    branches: {master}
 
 jobs:
   devsecops:
@@ -11,4 +10,3 @@ jobs:
   steps:
     - name: Code quality
       uses: ./.github/workflows/code-quality.yml
-      
