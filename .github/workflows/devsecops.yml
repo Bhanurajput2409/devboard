@@ -1,0 +1,12 @@
+name: DevSecops:
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  
+
+  code-quality:
+      uses: ./.github/workflows/code-quality.yml
