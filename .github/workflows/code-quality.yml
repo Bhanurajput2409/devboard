@@ -23,3 +23,15 @@ jobs:
         - name: Run linter
           run: npm run lint
           working-directory: frontend
+
+        - name: Set up Go
+          uses: actions/setup-go@v6
+          with:
+            go-version: stable # Or use `go-version-file: go.mod` to match your project
+
+        - name: Run golangci-lint
+          uses: golangci/golangci-lint-action@v9
+          with:
+            # Pin to a specific version of golangci-lint (e.g., v2.13)
+            version: v2.13
+          working-directory: backend
