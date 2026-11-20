@@ -29,9 +29,8 @@ jobs:
           with:
             go-version: stable # Or use `go-version-file: go.mod` to match your project
 
-        - name: Run golangci-lint
+        - name: golangci-lint
           uses: golangci/golangci-lint-action@v9
           with:
-            # Pin to a specific version of golangci-lint (e.g., v2.13)
-            version: v2.13
+            version: v2.15.0 # or 'latest'
             working-directory: backend
