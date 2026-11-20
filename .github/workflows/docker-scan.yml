@@ -1,0 +1,43 @@
+name: Docker Scan
+on: 
+  workflow_call:
+
+jobs:
+  docker-scan:
+    runs-on: ubuntu-latest
+    strategy:
+        fail-fast: false
+        matrix:
+            folders: ['backend','frontend', ]
+    steps:
+      - name: checout code
+        uses: actions/checkout@v7
+
+       # 1. Lint Dockerfile using Hadolint
+      - name: ${{ matrix.folders }} - Lint Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
+          format: sarif
+          output-file: hadolint-results.sarif
+          failure-threshold: error
+
+      - name: ${{ matrix.folders }} Upload Hadolint SARIF
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: hadolint-results.sarif
+
+      # 2. Build local image for scanning
+      - name: Build Docker image
+        run: docker build -t local-scan-image:${{ github.sha }} .
+
+      # 3. Scan image vulnerabilities using Trivy
+      - name: Scan image with Trivy
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: 'local-scan-image:${{ github.sha }}'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+          exit-code: '1'
