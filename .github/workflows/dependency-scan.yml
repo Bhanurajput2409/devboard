@@ -16,6 +16,7 @@ jobs:
 
       - name: Run Dependency Scan
         uses: golang/govulncheck-action@v1
+        working-directory: backend
         with:
           go-version-file: 'go.mod'
           go-package: './...'
