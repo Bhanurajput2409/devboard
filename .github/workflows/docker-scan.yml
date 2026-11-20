@@ -15,7 +15,7 @@ jobs:
 
        # 1. Lint Dockerfile using Hadolint
       - name: ${{ matrix.folders }} - Lint Dockerfile
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v0.36.0
         with:
           dockerfile: Dockerfile
           format: sarif
